@@ -1,5 +1,8 @@
 'use strict';
 
+const humanScore = 0;
+const computerScore = 0;
+
 function getRandomElement(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
