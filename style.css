@@ -12,6 +12,10 @@ body {
   height: 100vh;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 .container {
   max-width: 900px;
   height: 100%;
@@ -29,7 +33,6 @@ body {
 .choice-btn {
   flex: 1;
   margin-bottom: 30px;
-  cursor: pointer;
 }
 
 .infos {

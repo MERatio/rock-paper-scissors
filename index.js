@@ -1,10 +1,23 @@
 'use strict';
 
-const choiceBtns = document.querySelectorAll('[data-js-choice]');
-
-const logs = document.querySelector('#logs');
-const domHumanScore = document.querySelector('#humanScore');
-const domComputerScore = document.querySelector('#computerScore');
+const dom = {
+  choiceBtns: document.querySelectorAll('[data-js-choice]'),
+  logs: document.querySelector('#logs'),
+  humanScore: document.querySelector('#humanScore'),
+  computerScore: document.querySelector('#computerScore'),
+  logMsg(msg) {
+    const log = document.createElement('p');
+    log.classList.add('log');
+    log.textContent = msg;
+    dom.logs.appendChild(log);
+  },
+  disableChoiceBtns() {
+    for (const choiceBtn of dom.choiceBtns) {
+      choiceBtn.disabled = true;
+      choiceBtn.classList.remove('cursor');
+    }
+  },
+};
 
 function getRandomElement(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -15,16 +28,16 @@ function capitalizeFirstLetter(str) {
 }
 
 function generateWinnerAnnouncement(humanScore, computerScore) {
-  let logText = '';
+  let winnerAnnouncement = '';
   if (humanScore === computerScore) {
-    logText += `It's a tie game.`;
+    winnerAnnouncement += `It's a tie game.`;
   } else if (humanScore > computerScore) {
-    logText += `You win the game!.`;
+    winnerAnnouncement += `You win the game!.`;
   } else {
-    logText += `You lose the game!.`;
+    winnerAnnouncement += `You lose the game!.`;
   }
-  logText += ` Refresh the page to play again.`;
-  return logText;
+  winnerAnnouncement += ` Refresh the page to play again.`;
+  return winnerAnnouncement;
 }
 
 function getComputerChoice() {
@@ -32,74 +45,62 @@ function getComputerChoice() {
   return getRandomElement(choices);
 }
 
-function getHumanChoice() {
-  const choice = prompt('rock, paper, or scissors?');
-  return choice.toLowerCase();
-}
-
-function logMsg(msg) {
-  const log = document.createElement('p');
-  log.classList.add('log');
-  log.textContent = msg;
-  logs.appendChild(log);
-}
-
-function updateScores(humanScore, computerScore) {
-  domHumanScore.textContent = humanScore;
-  domComputerScore.textContent = computerScore;
-}
-
-function disableChoiceBtns() {
-  for (const choiceBtn of choiceBtns) {
-    choiceBtn.disabled = true;
-  }
-}
-
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  function playRound(humanChoice, computerChoice) {
+  function getRoundWinner(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-      logMsg(
-        `It's a tie! Both picked ${capitalizeFirstLetter(computerChoice)}`
-      );
+      return 'tie';
     } else if (
       (humanChoice === 'rock' && computerChoice === 'scissors') ||
       (humanChoice === 'paper' && computerChoice === 'rock') ||
       (humanChoice === 'scissors' && computerChoice === 'paper')
     ) {
+      return 'human';
+    } else {
+      return 'computer';
+    }
+  }
+
+  function playRound(humanChoice, computerChoice) {
+    const roundWinner = getRoundWinner(humanChoice, computerChoice);
+    if (roundWinner === 'tie') {
+      dom.logMsg(
+        `It's a tie! Both picked ${capitalizeFirstLetter(computerChoice)}`
+      );
+    } else if (roundWinner === 'human') {
       humanScore++;
-      logMsg(
+      dom.humanScore.textContent = humanScore;
+      dom.logMsg(
         `You win! ${capitalizeFirstLetter(
           humanChoice
         )} beats ${capitalizeFirstLetter(computerChoice)}`
       );
     } else {
       computerScore++;
-      logMsg(
+      dom.computerScore.textContent = computerScore;
+      dom.logMsg(
         `You lose! ${capitalizeFirstLetter(
           computerChoice
         )} beats ${capitalizeFirstLetter(humanChoice)}`
       );
     }
-
-    updateScores(humanScore, computerScore);
   }
 
-  for (const choiceBtn of choiceBtns) {
+  for (const choiceBtn of dom.choiceBtns) {
     choiceBtn.addEventListener('click', function handleChoiceBtnClick(e) {
       const humanChoice = e.currentTarget.dataset.jsChoice;
       const computerChoice = getComputerChoice();
       playRound(humanChoice, computerChoice);
 
       if (humanScore >= 5 || computerScore >= 5) {
-        disableChoiceBtns();
+        dom.disableChoiceBtns();
         const winnerAnnouncement = generateWinnerAnnouncement(
           humanScore,
           computerScore
         );
-        logMsg(winnerAnnouncement);
+        dom.logMsg(winnerAnnouncement);
       }
     });
   }
