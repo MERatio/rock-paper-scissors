@@ -1,5 +1,7 @@
 'use strict';
 
+const choiceBtns = document.querySelectorAll('[data-js-choice]');
+
 const logs = document.querySelector('#logs');
 const domHumanScore = document.querySelector('#humanScore');
 const domComputerScore = document.querySelector('#computerScore');
@@ -21,7 +23,7 @@ function generateWinnerAnnouncement(humanScore, computerScore) {
   } else {
     logText += `You lose the game!.`;
   }
-  logText += ` Human: ${humanScore}, Computer: ${computerScore}`;
+  logText += ` Refresh the page to play again.`;
   return logText;
 }
 
@@ -47,9 +49,13 @@ function updateScores(humanScore, computerScore) {
   domComputerScore.textContent = computerScore;
 }
 
+function disableChoiceBtns() {
+  for (const choiceBtn of choiceBtns) {
+    choiceBtn.disabled = true;
+  }
+}
+
 function playGame() {
-  const choiceBtns = document.querySelectorAll('[data-js-choice]');
-  let round = 1;
   let humanScore = 0;
   let computerScore = 0;
 
@@ -87,15 +93,14 @@ function playGame() {
       const computerChoice = getComputerChoice();
       playRound(humanChoice, computerChoice);
 
-      if (round >= 5) {
+      if (humanScore >= 5 || computerScore >= 5) {
+        disableChoiceBtns();
         const winnerAnnouncement = generateWinnerAnnouncement(
           humanScore,
           computerScore
         );
         logMsg(winnerAnnouncement);
       }
-
-      round++;
     });
   }
 }
