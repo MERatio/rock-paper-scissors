@@ -1,5 +1,7 @@
 'use strict';
 
+const logs = document.querySelector('#logs');
+
 function getRandomElement(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -31,6 +33,13 @@ function getHumanChoice() {
   return choice.toLowerCase();
 }
 
+function logMsg(msg) {
+  const log = document.createElement('p');
+  log.classList.add('log');
+  log.textContent = msg;
+  logs.appendChild(log);
+}
+
 function playGame() {
   const choiceBtns = document.querySelectorAll('[data-js-choice]');
   let round = 1;
@@ -39,7 +48,7 @@ function playGame() {
 
   function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-      console.log(
+      logMsg(
         `It's a tie! Both picked ${capitalizeFirstLetter(computerChoice)}`
       );
     } else if (
@@ -48,14 +57,14 @@ function playGame() {
       (humanChoice === 'scissors' && computerChoice === 'paper')
     ) {
       humanScore++;
-      console.log(
+      logMsg(
         `You win! ${capitalizeFirstLetter(
           humanChoice
         )} beats ${capitalizeFirstLetter(computerChoice)}`
       );
     } else {
       computerScore++;
-      console.log(
+      logMsg(
         `You lose! ${capitalizeFirstLetter(
           computerChoice
         )} beats ${capitalizeFirstLetter(humanChoice)}`
@@ -74,7 +83,7 @@ function playGame() {
           humanScore,
           computerScore
         );
-        console.log(winnerAnnouncement);
+        logMsg(winnerAnnouncement);
       }
 
       round++;

@@ -1,12 +1,24 @@
+:root {
+  --color-clouds: #ecf0f1;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+}
+
 .container {
   max-width: 900px;
-  margin: 5% auto 0;
+  height: 100%;
+  padding: 30px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .choices {
@@ -16,5 +28,21 @@
 
 .choice-btn {
   flex: 1;
+  margin-bottom: 30px;
   cursor: pointer;
+}
+
+.infos {
+  flex: 1;
+  padding: 15px;
+  background-color: var(--color-clouds);
+  border: 1px solid #000;
+}
+
+.log {
+  font-size: 18px;
+}
+
+.log:not(:last-child) {
+  margin-bottom: 5px;
 }
