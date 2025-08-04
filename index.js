@@ -32,6 +32,8 @@ function getHumanChoice() {
 }
 
 function playGame() {
+  const choiceBtns = document.querySelectorAll('[data-js-choice]');
+  let round = 1;
   let humanScore = 0;
   let computerScore = 0;
 
@@ -61,18 +63,23 @@ function playGame() {
     }
   }
 
-  // Play 5 rounds.
-  for (let i = 0; i < 5; i++) {
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-  }
+  for (const choiceBtn of choiceBtns) {
+    choiceBtn.addEventListener('click', function handleChoiceBtnClick(e) {
+      const humanChoice = e.currentTarget.dataset.jsChoice;
+      const computerChoice = getComputerChoice();
+      playRound(humanChoice, computerChoice);
 
-  const winnerAnnouncement = generateWinnerAnnouncement(
-    humanScore,
-    computerScore
-  );
-  console.log(winnerAnnouncement);
+      if (round >= 5) {
+        const winnerAnnouncement = generateWinnerAnnouncement(
+          humanScore,
+          computerScore
+        );
+        console.log(winnerAnnouncement);
+      }
+
+      round++;
+    });
+  }
 }
 
 playGame();

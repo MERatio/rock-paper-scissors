@@ -3,8 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./index.js" defer></script>
     <title>Rock Paper Scissors</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="choices">
+        <button type="button" class="choice-btn" data-js-choice="rock">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+            <!--!Font Awesome Pro v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.-->
+            <path
+              d="M135.4 317.6C130.6 309.9 128 301.1 128 292L128 256C128 229.5 149.5 208 176 208L192 208L192 128C192 101.5 213.5 80 240 80C257.3 80 272.4 89.1 280.9 102.8C285.2 80.7 304.7 64 328 64C351.4 64 370.9 80.8 375.1 102.9C382.4 98.5 390.9 96 400 96C422.1 96 440.8 111 446.3 131.4C451.8 129.2 457.7 128 464 128C490.5 128 512 149.5 512 176L512 272.9C512 282.8 509.7 292.6 505.2 301.5L465.6 380.6C454.8 402.3 432.6 416 408.4 416L224 416C207.5 416 192.2 407.6 183.4 393.6L135.4 317.6zM160 544L160 496C160 478.3 174.3 464 192 464L448 464C465.7 464 480 478.3 480 496L480 544C480 561.7 465.7 576 448 576L192 576C174.3 576 160 561.7 160 544z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="choice-btn" data-js-choice="paper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+            <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <path
+              d="M352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 304C288 312.8 280.8 320 272 320C263.2 320 256 312.8 256 304L256 128C256 110.3 241.7 96 224 96C206.3 96 192 110.3 192 128L192 400C192 401.5 192 403.1 192.1 404.6L131.6 347C115.6 331.8 90.3 332.4 75 348.4C59.7 364.4 60.4 389.7 76.4 405L188.8 512C231.9 553.1 289.2 576 348.8 576L368 576C465.2 576 544 497.2 544 400L544 192C544 174.3 529.7 160 512 160C494.3 160 480 174.3 480 192L480 304C480 312.8 472.8 320 464 320C455.2 320 448 312.8 448 304L448 128C448 110.3 433.7 96 416 96C398.3 96 384 110.3 384 128L384 304C384 312.8 376.8 320 368 320C359.2 320 352 312.8 352 304L352 96z"
+            />
+          </svg></button
+        ><button type="button" class="choice-btn" data-js-choice="scissors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+            <!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <path
+              d="M104 272C81.9 272 64 289.9 64 312C64 334.1 81.9 352 104 352L284.2 352C276.6 360.5 272 371.7 272 384C272 409.3 291.5 430 316.3 431.9C308.6 440.4 304 451.7 304 464C304 490.5 325.5 512 352 512L448 512C518.7 512 576 454.7 576 384L576 270.9C576 230.7 560 192.1 531.6 163.6C508.8 140.8 478 128 445.8 128L400 128C378.7 128 360.7 141.9 354.4 161.1L428.9 184.8C437.3 187.5 442 196.5 439.3 204.9C436.6 213.3 427.6 218 419.2 215.3L352.1 193.9L352.1 194L148.1 129.9C126.9 123.2 104.5 134.9 97.9 156C91.3 177.1 103 199.5 124.1 206.2L333.5 272L104 272z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </body>
 </html>
