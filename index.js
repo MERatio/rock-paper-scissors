@@ -1,6 +1,8 @@
 'use strict';
 
 const logs = document.querySelector('#logs');
+const domHumanScore = document.querySelector('#humanScore');
+const domComputerScore = document.querySelector('#computerScore');
 
 function getRandomElement(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -40,6 +42,11 @@ function logMsg(msg) {
   logs.appendChild(log);
 }
 
+function updateScores(humanScore, computerScore) {
+  domHumanScore.textContent = humanScore;
+  domComputerScore.textContent = computerScore;
+}
+
 function playGame() {
   const choiceBtns = document.querySelectorAll('[data-js-choice]');
   let round = 1;
@@ -70,6 +77,8 @@ function playGame() {
         )} beats ${capitalizeFirstLetter(humanChoice)}`
       );
     }
+
+    updateScores(humanScore, computerScore);
   }
 
   for (const choiceBtn of choiceBtns) {

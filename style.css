@@ -39,6 +39,16 @@ body {
   border: 1px solid #000;
 }
 
+.scores {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.score-text {
+  font-size: 22px;
+}
+
 .log {
   font-size: 18px;
 }
